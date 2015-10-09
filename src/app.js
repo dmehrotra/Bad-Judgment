@@ -11,7 +11,8 @@ var _ = require('underscore');
 var Network = require('./network.js')
 var request = require('request');
 var app = express();
-
+var account_sessions;
+var networks = [];
 app.use('/static',express.static(__dirname + '/public'));
 
 app.set('view engine', 'jade');
@@ -23,8 +24,8 @@ app.get('/', function(req,res){
 app.post('/upload', upload.single('fbdata'), function (req, res, next) {
   	fs.readFile(req.file.path,'utf8', function (err, data) {
 	  if (err) throw err;
-	  	var account_sessions = Parser.process(data).clean(); 	
-	  	var networks = [];
+	  	account_sessions = Parser.process(data).clean(); 	
+	  	
 	  	_.each(account_sessions, function(session,key){
 	  		var existing_network = _.find(networks,function(n){return n.router == session.router}); 
 	  		if (existing_network){
@@ -35,7 +36,12 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 	  		}
 	  	});
 	  	_.each(networks, function(network){
-	  		request('http://ip-api.com/json/'+network.router, function (error, response, body) {
+	  		if (network.router.split(':').length > 3){
+	  			var url = 'http://ip-api.com/json/'+ network.router
+	  		}else{
+	  			var url = 'http://ip-api.com/json/'+network.router+'.1'
+	  		}
+	  		request(url, function (error, response, body) {
 		    	console.log('trying') 
 			    if (!error && response.statusCode == 200) {
 			        console.log('got it');
@@ -51,14 +57,17 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 						network.lon = json.lon;
 						network.org = json.org;
 						network.city = json.city;
+						_.each(network.sessions,function(s){
+							s.update(json.lat,json.lon);
+						})
 					}else{
 			    		return false;
 			    	}
 				}
 			});
 		});
-		eval(locus);
 	});
+	eval(locus);
 });
   	
 

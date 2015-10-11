@@ -8,6 +8,8 @@ function Network(session){
 	this.lat = '';
 	this.lon = '';
 	this.org = '';
+	this.home = false;
+	this.work = false;
 
 }
 

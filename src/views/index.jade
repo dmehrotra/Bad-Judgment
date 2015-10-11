@@ -1,7 +1,9 @@
 extends ./layout.jade
 block content
 	p hello
-	form(action="/upload",enctype="multipart/form-data", method="post")
+	form(id=,'uploadForm',action="/upload",enctype="multipart/form-data", method="post")
 		input(type="file", name="fbdata")
 		input(type="submit" value="Upload")
 
+
+    

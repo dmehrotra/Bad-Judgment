@@ -20,7 +20,7 @@ var home = {"sessions":[1]};
 
 
 app.use('/static',express.static(__dirname + '/public'));
-
+app.set('port', (process.env.PORT || 5000));
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.get('/', function(req,res){
@@ -94,6 +94,6 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 });
   	
 
-app.listen(5000,function(){
+app.listen(app.get('port'),function(){
 	console.log('front end site running on port 5000 baby');
 });

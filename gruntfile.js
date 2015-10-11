@@ -14,7 +14,7 @@ module.exports = function(grunt){
         },
         watch:{
             js:{
-                files:['src/vendor/*.js', 'src/public/js/src/*.js','src/public/js/src/vendor/*.js'],
+                files:['src/public/js/src/vendor/*.js', 'src/public/js/src/*.js'],
                 tasks:['uglify:dev']
             },
             css:{
@@ -33,7 +33,7 @@ module.exports = function(grunt){
                     compress: false
                 },
                 files: {
-                    'src/public/js/app.min.js': [ 'src/vendor/underscore.min.js', 'src/public/js/src/*.js']
+                    'src/public/js/app.min.js': [ 'src/vendor/underscore.min.js','src/public/js/src/vendor/*.js', 'src/public/js/src/*.js']
                 }
             },
             build: {

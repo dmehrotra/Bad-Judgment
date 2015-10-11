@@ -52,9 +52,9 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 	  			var url = 'http://ip-api.com/json/'+network.router+'.1'
 	  		}
 	  		request(url, function (error, response, body) {
-		    	console.log('trying') 
+
 			    if (!error && response.statusCode == 200) {
-			        console.log('got it');
+	
 			        var json;
 			        try{
 			        	var json = JSON.parse(body)
@@ -68,7 +68,6 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 						network.org = json.org;
 						network.city = json.city;
 						var length = network.sessions.length; 
-						
 						_.each(network.sessions,function(s){
 							s.frequency = length;
 							s.updateWithFrequency(length);
@@ -80,15 +79,18 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 				}
 			});
 		});
+		var finish = function(callback){
+			Util.help().updateHomeSessions(Util.help().getHome(networks));
+			var not_home = _.where(networks, { "home":false})
+			Util.help().updateWorkSessions(Util.help().getWork(not_home));
+			// reverse session array and do update data based on network calculations
+			Util.help().updateSessionData(account_sessions.reverse());
 		// mass assignment of work home and previous sessions;
-		Util.help().updateHomeSessions(Util.help().getHome(networks));
-		var not_home = _.where(networks, { "home":false})
-		Util.help().updateWorkSessions(Util.help().getWork(not_home));
-		// reverse session array and do update data based on network calculations
-		Util.help().updateSessionData(account_sessions.reverse());
-		
-		res.render('index', { locals: { data : account_sessions } });
+		}
+		setTimeout(function(){res.json(account_sessions)}, 5000);
+
 	});
+	
 });
   	
 

@@ -1,18 +1,38 @@
+var json;
 $(document).ready(function() {
-     $('#uploadForm').submit(function() {
-        $("#status").empty().text("File is uploading...");
-        $(this).ajaxSubmit({
+    var json;
+    var form = document.getElementById('uploadForm');
+    var fileSelect = document.getElementById('file');
+    
+    form.onsubmit = function(event) {
+        event.preventDefault();
+        var file = fileSelect.files[0];
+      // Create a new FormData object.
+        var formData = new FormData();
+      // Update button text.
+      
+          // Add the file to the request.
+        formData.append('fbdata', file, file.name);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/upload', true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {   
+          } else {
+            alert('An error occurred!');
+          }
+        };
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+          digest(xhr.responseText);
+        }
+    };
+        xhr.send(formData);
+        
+    }     
 
-            error: function(xhr) {
-        status('Error: ' + xhr.status);
-            },
+var digest = function(res){
+   var parsed = JSON.parse(res);
+  debugger;
+}
 
-            success: function(response) {
-        $("#status").empty().text(response);
-                console.log(response);
-            }
-    });
-        //Very important line, it disable the page refresh.
-    return false;
-    });    
 });

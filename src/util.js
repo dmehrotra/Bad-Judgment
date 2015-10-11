@@ -39,7 +39,7 @@ Util.prototype.updateSessionData = function(sessions){
 	for(var i = 0; i <= sessions.length + 1; i++ ){
 		sess = sessions[i];
 		if (sessions[i-1] && sessions[i]){
-			sessions[i].last_session = sessions[i-1];
+			sessions[i].last_session_location = sessions[i-1].city;
 			var am = sess.date.split(' at ')[1].split('am').length > 1
 			if(am){
 				var time = sess.date.split(' at ')[1].split('am')[0];

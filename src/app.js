@@ -79,15 +79,15 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 				}
 			});
 		});
-		var finish = function(callback){
+		
 			Util.help().updateHomeSessions(Util.help().getHome(networks));
 			var not_home = _.where(networks, { "home":false})
 			Util.help().updateWorkSessions(Util.help().getWork(not_home));
 			// reverse session array and do update data based on network calculations
-			Util.help().updateSessionData(account_sessions.reverse());
+			
 		// mass assignment of work home and previous sessions;
-		}
-		setTimeout(function(){res.json(account_sessions)}, 5000);
+		
+		setTimeout(function(){res.json(account_sessions.reverse())}, 6000);
 
 	});
 	

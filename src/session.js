@@ -8,7 +8,6 @@ function Session(date,ip,meta){
 	this.lat = '';
 	this.lon = '';  
 	this.first_session_of_day = false; 
-	this.last_session_location = '';
 	this.get_router(this.ip);
 	this.phone = false;
 	this.home = false;

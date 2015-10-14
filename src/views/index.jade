@@ -3,9 +3,29 @@ block content
 	#wrapper
 		#left.container
 			h2 Bad Judgement
-			p This project uses your facebook data to make inferences about your behavior and imposes an entirely fictional narrative upon you.  
-			p No tracker can follow you better than yourself.  Facebook encourages the oversharing of information to collect data about you and your networks.
+			p This project uses your facebook data to make inferences about your behavior to impose an entirely fictional narrative upon you.  
+			p The goal here is to produce an incorrect digital journal of yourself based on your facebook behavior.
 			p
+			p No tracker can follow you better than yourself.  Facebook encourages the oversharing of information to collect data about you and your networks.
+			p The goal here is to produce an incorrect digital journal of yourself based on your behavior.
+			p Though Facebook does not sell information to any unafilliated third party advertisers.  Facebook shares information about you with a vast network of third party partners who in turn have their own pricavy policies.
+			p Here is are links to all of their affiliates' privacy policies:
+			p #[a(href='http://atlassolutions.com/privacy-policy/') Atlas Solutions Privacy Policy]
+			p #[a(href='https://www.liverail.com/privacy-policy/') Live Rail Privacy Policy]
+			p #[a(href='http://www.onavo.com/privacy_policy') Onavo Privacy Policy]
+			p #[a(href='http://www.whatsapp.com/legal/#Privacy') Whats App Privacy Policy]
+			p #[a(href='https://www.oculus.com/en-us/privacy/') Oculus Privacy Policy]
+			p #[a(href='http://moves-app.com/privacy') Moves Privacy Policy]
+
+			p There is a digital representation of you in the databases of countless data miners, hopefully mine isn't one of them.
+
+			h2 Usage 
+			p 1. Download your facebook data following these steps: #[a(href='https://www.facebook.com/help/131112897028467') Data Download]
+			p 2. Within 10 minutes Facebook will email you a copy of your data.
+			p 3. Find the security.htm file, and upload in the window to the right.
+			h2 Policy
+			p I do not store any of the data you upload.  I parse it in a node server, and erase it immediately.  No one but you can see this.
+				
 		#right.container
 			form(id='uploadForm',action="/upload",enctype="multipart/form-data", method="post")
 				input(type="file",id='file', name="fbdata")

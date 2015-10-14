@@ -2,7 +2,10 @@ extends ./layout.jade
 block content
 	#wrapper
 		#left.container
-			p This is some text about the project
+			h2 Bad Judgement
+			p This project uses your facebook data to make inferences about your behavior and imposes an entirely fictional narrative upon you.  
+			p No tracker can follow you better than yourself.  Facebook encourages the oversharing of information to collect data about you and your networks.
+			p
 		#right.container
 			form(id='uploadForm',action="/upload",enctype="multipart/form-data", method="post")
 				input(type="file",id='file', name="fbdata")

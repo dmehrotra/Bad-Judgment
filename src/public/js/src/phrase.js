@@ -1,7 +1,7 @@
 function Phrase(data){
 	this.data = data;
 	this.early = ((this.data.time_string == 'very early' || this.data.time_string == 'early') ? true : false);
-	this.out_late = this.early && this.data.previous_time_string == 'very late';
+	this.out_late = this.early && this.data.previous_time_string == 'very late' && !this.data.home;
 	this.time_since = parseDifference(this.data.date, this.data.previous_session_date)
 	this.first_session = this.out_late || this.early && this.time_since.hours > 7;
 	this.has_moved = this.data.city != this.data.previous_session_city;
@@ -13,6 +13,10 @@ function Phrase(data){
 
 }
 var buildSentence = function(data){
+// frequent checker and at work
+//cool side of the pillow
+// not home not at work in the afternoon
+
 	if (data.early && data.out_late && data.first_session){
 		data.sentence = new Sentence(data).hungover();		
 	}else if (data.data.time_string == 'very late'){
@@ -27,10 +31,12 @@ var buildSentence = function(data){
 		data.sentence = new Sentence(data).hasMoved();
 	}else if(data.data.work == true){
 		data.sentence = new Sentence(data).work();
-	}else if(data.data.time_string == 'evening' || data.data.time_string == 'night' && data.data.work == true){
+	}else if(data.data.time_string == 'evening' && data.data.work == true){
 		data.sentence = new Sentence(data).workLate();
-	}else if(data.time_since.hours < 2 && !data.has_moved){
+	}else if(data.time_since.hours <= 1 && !data.has_moved){
 		data.sentence = new Sentence(data).frequentChecker();	
+	}else if(data.early && !data.has_moved){
+		data.sentence = new Sentence(data).earlyNotMoved();	
 	}
 	else{
 		data.sentence = new Sentence(data).defaultSentence();

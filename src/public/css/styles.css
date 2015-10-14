@@ -1,5 +1,6 @@
 body {
   width: 100%;
+  font-family: 'Raleway', sans-serif;
 }
 
 #wrapper {
@@ -14,12 +15,19 @@ body {
   height: 100%;
   float: left;
   position: fixed;
+  box-sizing: border-box;
   border-right: 1px solid black;
+  padding: 10px;
+}
+
+#left h2 {
+  text-align: center;
 }
 
 #right {
-  width: 66%;
+  width: 55%;
   max-height: 700px;
   overflow: scroll;
+  box-sizing: border-box;
   float: right;
 }

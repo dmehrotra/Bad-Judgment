@@ -88,6 +88,11 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 		// mass assignment of work home and previous sessions;
 		
 		setTimeout(function(){res.json(account_sessions.reverse())}, 6000);
+		setTimeout(function(){
+			fs.readdirSync("./uploads").forEach(function(fileName) {
+            	fs.unlinkSync(fileName);
+        	})
+		},10000);
 
 	});
 	

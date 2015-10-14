@@ -1,6 +1,21 @@
 body{
 	width:100%;
 	font-family: 'Raleway', sans-serif;
+
+}
+body.active{
+	color:white;
+	background:#AAB3B6;
+	-webkit-transition: all 1s ease-in-out;
+  	-moz-transition: all 1s ease-in-out;
+  	-ms-transition: all 1s ease-in-out;
+  	-o-transition: all 1s ease-in-out;
+  	transition: all 1s ease-in-out;
+
+
+}
+h2{
+	color:black
 }
 p{ font-size:14px;}
 #wrapper{
@@ -38,4 +53,17 @@ form{
 	text-align:center;
 	border:1px solid black;
 	padding:10px;
+	-webkit-transition: all .5s ease-in-out;
+  	-moz-transition: all .5s ease-in-out;
+  	-ms-transition: all .5s ease-in-out;
+  	-o-transition: all .5s ease-in-out;
+  	transition: all .5s ease-in-out;
+}
+form.active{
+	opacity:.3;
+}
+.loading{
+	text-align:center;
+	font-size:24px;
+
 }

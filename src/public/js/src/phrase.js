@@ -33,6 +33,8 @@ var buildSentence = function(data){
 		data.sentence = new Sentence(data).work();
 	}else if(data.data.time_string == 'evening' && data.data.work == true){
 		data.sentence = new Sentence(data).workLate();
+	}else if(data.time_since.hours <= 1 && !data.data.home){
+		data.sentence = new Sentence(data).checkingElsewhere();
 	}else if(data.time_since.hours <= 1 && !data.has_moved){
 		data.sentence = new Sentence(data).frequentChecker();	
 	}else if(data.early && !data.has_moved){

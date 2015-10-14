@@ -4,7 +4,7 @@ block content
 		#left.container
 			h2 Bad Judgement
 			p This project uses your facebook data to make inferences about your behavior to impose an entirely fictional narrative upon you.  
-			p The goal here is to produce an incorrect digital journal of yourself based on your facebook behavior.
+			p The goal here is to produce an incorrect digital journal of your facebook behavior.
 			p
 			p No tracker can follow you better than yourself.  Facebook encourages the oversharing of information to collect data about you and your networks.
 			p The goal here is to produce an incorrect digital journal of yourself based on your behavior.
@@ -27,8 +27,10 @@ block content
 			p I do not store any of the data you upload.  I parse it in a node server, and erase it immediately.  No one but you can see this.
 				
 		#right.container
+			
 			form(id='uploadForm',action="/upload",enctype="multipart/form-data", method="post")
 				input(type="file",id='file', name="fbdata")
 				input(type="submit" value="Upload")
-			ul
-    
+			div.loading
+			div.story
+			

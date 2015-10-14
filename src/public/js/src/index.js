@@ -8,6 +8,11 @@ $(document).ready(function() {
     
     form.onsubmit = function(event) {
         event.preventDefault();
+        $('body').addClass('active');
+        $('form').css("margin", "10px");
+        $('form').addClass('active');
+        $('.loading').html("Loading...")
+
         var file = fileSelect.files[0];
       // Create a new FormData object.
         var formData = new FormData();
@@ -25,6 +30,7 @@ $(document).ready(function() {
         };
         xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
+          $('.loading').css('display', 'none');
           digest(xhr.responseText);
         }
     };
@@ -49,8 +55,9 @@ var buildSessions = function(sessions){
       console.log(session.phrase.sentence);
     }  
     if (i == sessions.length - 1){
+      
       $.each(parsed_sessions,function(i,v){
-        $('ul').append('<li>'+v.phrase.sentence+'</li>');
+        $('.story').append('<p>'+v.phrase.sentence+'</p>');
       });
     } 
   }

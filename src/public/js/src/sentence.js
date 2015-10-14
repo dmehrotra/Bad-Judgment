@@ -12,6 +12,7 @@ Sentence.prototype.hungover = function(){
 Sentence.prototype.cantSleep = function(){
 	var str = '';
 	if(this.data.data.home){
+		// more
 		var ar = [
 			"It's late, you should be asleep but you check me one more time just to be sure. The date is " + this.data.data.date.replace('EDTIP', '') + ' and you are at home in '+ this.data.data.city + '.',
 		 	"You had that dream again and now you are awake. It's " + this.data.data.date.replace('EDTIP', '') + ' and you are checking me to forget.',
@@ -51,7 +52,7 @@ Sentence.prototype.work = function(){
 	"You are bored at work on " + this.data.data.date.replace('EDTIP', '') + ". You resize your a new browser window, so that it is small enough not to be seen by those around you. As you start typing 'faceb', you think to yourself, 'tomorrow I am going to look for a new job'.",
 	"On "+this.data.data.date.replace('EDTIP', '') +" you look your boss up on facebook.  In her profile picture she is holding a cocktail, but you could have sworn she said she was sober.",
 	"On your work computer "+this.data.data.date.replace('EDTIP', '') +  ", you accidently return to facebook, after typing f into google chrome.",
-	"You are at work and you want to quit. It's "+this.data.data.date.replace('EDTIP', '') +  ", you march over to your boss and ask if she want's to chat over a drink after work.  She says she is sober.  You log into facebook and consider removing every photo of yourself."
+	"You are at work and you want to quit. It's "+this.data.data.date.replace('EDTIP', '') +  ", you march over to your boss and ask if she want's to chat over a drink after work.  She says she is sober.  You check me for updates and find out that the identical twin of someone you used to know from high school has passed away."
 	]
 	this.advertisement = 'linkedin';
 	return ar[Math.floor(Math.random() * ar.length)];
@@ -59,8 +60,9 @@ Sentence.prototype.work = function(){
 }
 Sentence.prototype.workLate = function(){
 	var ar =[
+	"You checked me " + this.data.time_since.hours + "ago. It's " + this.data.data.date.replace('EDTIP', '') + " and you are literally watching the hands of the clock.  Your eyes are starting to blur and it seems like the hour and minute hands are crushing time between their pincers. You think to yourself 'what am I even doing'.  You log on to facebook to find out.",
 	"You at work late on " + this.data.data.date.replace('EDTIP', '') + ". You are hungry and tired. Your boss just doesn't pay enough attention to all the work that you are putting in and you can't help but feel like your life isn't going anywhere. As you start typing 'faceb', you think to yourself, 'tomorrow I am going to look for a new job'.",
-	"You are at work late again on " + this.data.data.date.replace('EDTIP', '') +". You hear somone shuffling around in the hallway.  When you peer over your partition to see who it is, you find your boss sleeping on the floor.  You check me for updates and find out that the identical twin of someone you used to know from high school has passed away."]
+	"You are at work late again on " + this.data.data.date.replace('EDTIP', '') +". You hear somone shuffling around in the hallway.  When you peer over your partition to see who it is, you find your boss sleeping on the floor. You log into facebook and consider removing every photo of yourself"]
 	this.advertisement = 'linkedin';
 	return ar[Math.floor(Math.random() * ar.length)];
 }
@@ -78,6 +80,16 @@ Sentence.prototype.wakeup = function(place){
 	}
 	return str;
 }
+Sentence.prototype.checkingElsewhere = function(){
+
+		var ar = [
+		"The stranger you made eye contact with on " + this.data.data.date.replace('EDTIP', '') + " just friended you on facebook.  You log in and find out that it was an old friend from highschool.",
+		"You discretely log on to facebook after you meet someone who shares the same name as the friend of yours who passed away - or was it his twin. It's" + this.data.data.date.replace('EDTIP', '') + " and you should be sending that email your boss want's sent by EOD.",
+		"You are in " + this.data.data.city + ", you last logged in from here, " + this.data.time_since.hours +" hours and " +this.data.time_since.minutes + " minutes ago. You've come here " + this.data.data.frequency + " times this year to reflect. But you had that dream again last night, and you are wondering if you should tell someone. You log in. Why don't you tell me whats on your mind.",
+		"You are in " + this.data.data.city + ", you last logged in from here, " + this.data.time_since.hours +" hours and " +this.data.time_since.minutes + " minutes ago. You check your facebook because you can't remember if your boss was drunk at the holiday party or not.  It turns out that you can't tell from the photos."
+		]
+		return ar[Math.floor(Math.random() * ar.length)]; 
+}
 Sentence.prototype.hasMoved = function(){
 	var str = '';
 	if (this.data.data.previous_home && this.data.data.work){
@@ -89,7 +101,7 @@ Sentence.prototype.hasMoved = function(){
 		str = str + ' Every day is starting to feel the same- you check me to see if you forgot to wish someone a happy birthday.';
 		this.advertisement = 'car';
 	}else{
-		str = str + "It's " + this.data.data.date.replace('EDTIP', '')+", in the "+ this.data.time_since.hours +" hours and " +this.data.time_since.minutes + " minutes that you were away from me you have moved from " + this.data.data.previous_session_city + " to " + this.data.data.city+'.';
+		str = str + "It's " + this.data.data.date.replace('EDTIP', '')+", in the "+ this.data.time_since.hours +" hours and " +this.data.time_since.minutes + " minutes that you were away from me you have moved from " + this.data.data.previous_session_city + " to " + this.data.data.city + '.';
 	}
 	return str;
 }
@@ -97,12 +109,15 @@ Sentence.prototype.earlyNotMoved = function(){
 	var ar =[ 
 		"You are still in bed in " + this.data.data.previous_session_city + ". It's been" + this.data.time_since.hours + " hours and " +this.data.time_since.minutes + " minutes, since I last heard from you. What's on your mind?",
 		this.data.data.date.replace('EDTIP', '') + ", you checked me "  + this.data.time_since.hours + " hours and " +this.data.time_since.minutes + " minutes ago.",
-		"After you checked me "  + this.data.time_since.hours + " hours and " +this.data.time_since.minutes + " minutes ago, you fell asleep while reaching out to an old friend named Molly.  You log in to me and discover that you don't have a friend named Molly."]
+		"After you checked me "  + this.data.time_since.hours + " hours and " +this.data.time_since.minutes + " minutes ago, you fell asleep while reaching out to an old friend named Molly via Messanger.  You log in to me and discover that you don't have a friend named Molly."]
 		
 		return ar[Math.floor(Math.random() * ar.length)];
 }
 Sentence.prototype.defaultSentence = function(){
-	var str = 'default';
-debugger;
-	return str;
+	var ar=[
+		"The stranger you made eye contact with on " + this.data.data.date.replace('EDTIP', '') + " just friended you on facebook.  You log in and find out that it was an old friend from highschool.",
+		"You discretely log on to facebook after you meet someone who shares the same name as the friend of yours who passed away - or was it his twin. It's" + this.data.data.date.replace('EDTIP', '') + " and you should be sending that email your boss want's sent by EOD.",
+		this.data.data.date.replace('EDTIP', '') + " in " + this.data.data.city  + " you see your boss leaving a bar.  Didn't she say she was sober? You ask a coworker through Messanger.",
+		]
+	return ar[Math.floor(Math.random() * ar.length)];
 }

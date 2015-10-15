@@ -67,18 +67,24 @@ Sentence.prototype.workLate = function(){
 	return ar[Math.floor(Math.random() * ar.length)];
 }
 Sentence.prototype.wakeup = function(place){
-	var str = '';
+	
 	if (place){
-		str = str + " On " + this.data.data.date.replace('EDTIP', '')+ ", you wake up and roll over onto the cool side of the pillow to check me for updates.";
-		this.advertisement = 'cereal';
+		var ar = [ 
+			" On " + this.data.data.date.replace('EDTIP', '')+ ", you wake up with the taste of cedar in your mouth and for some reason you can't remember how you managed to fall asleep with your hand in the drain of the kitchen sink.  You log in to facebook to discover that you have no new notifications.",
+			" You wake up on " + this.data.data.date.replace('EDTIP', '')+ " having had that dream again.  Except this time your boss was watching.  You log on to facebook and discover that your sister is a lesbian.",
+			" You wake up on " + this.data.data.date.replace('EDTIP', '')+ " to the smell of burning toast. At first you think you are having a heart attack, but then you realize that only happens if you smell cedar. You log on to facebook and discover that you forgot to send that message afterall.",
+			]
+		return ar[Math.floor(Math.random() * ar.length)]; 
+		
 	}else{
 		str = str + " On" + this.data.data.date.replace('EDTIP', '') + " you wake up in a bed that isn't yours in " +place+ ".";
 		if (this.data.data.frequency_string == 'once'){
 			str = str + " Another one night stand. You are conflicted as to whether you update your status or not."
 			this.advertisement = 'condoms';
 		}		 
-	}
 	return str;
+	}
+	
 }
 Sentence.prototype.checkingElsewhere = function(){
 

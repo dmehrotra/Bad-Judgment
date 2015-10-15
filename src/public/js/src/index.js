@@ -7,35 +7,42 @@ $(document).ready(function() {
     var fileSelect = document.getElementById('file');
     
     form.onsubmit = function(event) {
+        
         event.preventDefault();
-        $('body').addClass('active');
-        $('form').css("margin", "10px");
-        $('form').addClass('active');
-        $('.loading').html("Loading...")
-
         var file = fileSelect.files[0];
-      // Create a new FormData object.
-        var formData = new FormData();
-      // Update button text.
-      
-          // Add the file to the request.
-        formData.append('fbdata', file, file.name);
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/upload', true);
-        xhr.onload = function () {
-          if (xhr.status === 200) {   
-          } else {
-            alert('An error occurred!');
+        debugger;
+        if (file.name == 'security.htm'){
+          $('body').addClass('active');
+          $('form').css("margin", "10px");
+          $('form').addClass('active');
+          $('.loading').html("Loading...")
+
+        // Create a new FormData object.
+          var formData = new FormData();
+        // Update button text.
+        
+            // Add the file to the request.
+          formData.append('fbdata', file, file.name);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/upload', true);
+          xhr.onload = function () {
+            if (xhr.status === 200) {   
+            } else {
+              alert('An error occurred!');
+            }
+          };
+          xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            $('.loading').css('display', 'none');
+            digest(xhr.responseText);
           }
-        };
-        xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-          $('.loading').css('display', 'none');
-          digest(xhr.responseText);
-        }
-    };
-      xhr.send(formData);
-    }     
+      };
+        xhr.send(formData);
+      }    
+    else{
+      alert('invalid upload');
+      }   
+    }
 
 
 

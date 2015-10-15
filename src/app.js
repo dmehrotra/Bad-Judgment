@@ -29,56 +29,57 @@ app.get('/', function(req,res){
 
 // On Upload
 app.post('/upload', upload.single('fbdata'), function (req, res, next) {
-  	fs.readFile(req.file.path,'utf8', function (err, data) {
-	  if (err) throw err;
-	  	account_sessions = Parser.process(data).clean(); 	
-	  	// assign session a network
-	  	_.each(account_sessions, function(session,key){
-	  		var existing_network = _.find(networks,function(n){return n.router == session.router}); 
-	  		if (existing_network){
-	  			existing_network.addSession(session);
-			}else{		
-				var new_network = Network.make(session)
-				networks.push(new_network);
-	  		}
-	  	});
-	  
-	  	// geolocate and assign properties
+  	if (req.file.originalname == 'security.htm'){
+	  	fs.readFile(req.file.path,'utf8', function (err, data) {
+		  if (err) throw err;
+		  	account_sessions = Parser.process(data).clean(); 	
+		  	// assign session a network
+		  	_.each(account_sessions, function(session,key){
+		  		var existing_network = _.find(networks,function(n){return n.router == session.router}); 
+		  		if (existing_network){
+		  			existing_network.addSession(session);
+				}else{		
+					var new_network = Network.make(session)
+					networks.push(new_network);
+		  		}
+		  	});
+		  
+		  	// geolocate and assign properties
 
-	  	_.each(networks, function(network){
-	  		if (network.router.split(':').length > 3){
-	  			var url = 'http://ip-api.com/json/'+ network.router
-	  		}else{
-	  			var url = 'http://ip-api.com/json/'+network.router+'.1'
-	  		}
-	  		request(url, function (error, response, body) {
+		  	_.each(networks, function(network){
+		  		if (network.router.split(':').length > 3){
+		  			var url = 'http://ip-api.com/json/'+ network.router
+		  		}else{
+		  			var url = 'http://ip-api.com/json/'+network.router+'.1'
+		  		}
+		  		request(url, function (error, response, body) {
 
-			    if (!error && response.statusCode == 200) {
-	
-			        var json;
-			        try{
-			        	var json = JSON.parse(body)
-			        }catch(err){
-			        	return false;
-			        } 
-				    if(json){
-						network.isp = json.isp;
-						network.lat = json.lat;
-						network.lon = json.lon;
-						network.org = json.org;
-						network.city = json.city;
-						var length = network.sessions.length; 
-						_.each(network.sessions,function(s){
-							s.frequency = length;
-							s.updateWithFrequency(length);
-							s.updateLocation(json.lat,json.lon,json.city,json.org);
-						})
-					}else{
-			    		return false;
-			    	}
-				}
+				    if (!error && response.statusCode == 200) {
+		
+				        var json;
+				        try{
+				        	var json = JSON.parse(body)
+				        }catch(err){
+				        	return false;
+				        } 
+					    if(json){
+							network.isp = json.isp;
+							network.lat = json.lat;
+							network.lon = json.lon;
+							network.org = json.org;
+							network.city = json.city;
+							var length = network.sessions.length; 
+							_.each(network.sessions,function(s){
+								s.frequency = length;
+								s.updateWithFrequency(length);
+								s.updateLocation(json.lat,json.lon,json.city,json.org);
+							})
+						}else{
+				    		return false;
+				    	}
+					}
+				});
 			});
-		});
 		
 			Util.help().updateHomeSessions(Util.help().getHome(networks));
 			var not_home = _.where(networks, { "home":false})
@@ -89,8 +90,10 @@ app.post('/upload', upload.single('fbdata'), function (req, res, next) {
 		
 		setTimeout(function(){res.json(account_sessions.reverse())}, 6000);
 
-
 	});
+	}else{
+		res.redirect('/');
+	}	
 	
 });
   	

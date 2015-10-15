@@ -16,7 +16,7 @@ Sentence.prototype.cantSleep = function(){
 		var ar = [
 			"It's late, you should be asleep but you check me one more time just to be sure. The date is " + this.data.data.date.replace('EDTIP', '') + ' and you are at home in '+ this.data.data.city + '.',
 		 	"You had that dream again and now you are awake. It's " + this.data.data.date.replace('EDTIP', '') + ' and you are checking me to forget.',
-		 	"You are at home and can't sleep. The date is " + this.data.data.date.replace('EDTIP', '') +  " and you are looking for picture of yourself when you were young, again."
+		 	"You are at home and cant sleep. The date is " + this.data.data.date.replace('EDTIP', '') +  " and you are looking for picture of yourself when you were young, again."
 		 	]
 		
 		this.advertisement = 'sleep aid';

@@ -90,7 +90,7 @@ Sentence.prototype.checkingElsewhere = function(){
 
 		var ar = [
 		"The stranger you made eye contact with on " + this.data.data.date.replace('EDTIP', '') + " just friended you on facebook.  You log in and find out that it was an old friend from highschool.",
-		"You discretely log on to facebook after you meet someone who shares the same name as the friend of yours who passed away - or was it his twin. It's" + this.data.data.date.replace('EDTIP', '') + " and you should be sending that email your boss want's sent by EOD.",
+		"You discretely log on to facebook after you meet someone who shares the same name as the friend of yours who passed away - or was it his twin who died? It's" + this.data.data.date.replace('EDTIP', '') + " and you should be writing that email your boss want's sent by EOD.",
 		"You are in " + this.data.data.city + ", you last logged in from here, " + this.data.time_since.hours +" hours and " +this.data.time_since.minutes + " minutes ago. You've come here " + this.data.data.frequency + " times this year to reflect. But you had that dream again last night, and you are wondering if you should tell someone. You log in. Why don't you tell me whats on your mind.",
 		"You are in " + this.data.data.city + ", you last logged in from here, " + this.data.time_since.hours +" hours and " +this.data.time_since.minutes + " minutes ago. You check your facebook because you can't remember if your boss was drunk at the holiday party or not.  It turns out that you can't tell from the photos."
 		]

@@ -46,8 +46,8 @@ var buildSentence = function(data){
 }
 var parseDifference = function(current,previous){
 	if(current && previous){
-		var c = Date.parse(current.replace(' at','').replace('EDTIP', ''));
-		var p = Date.parse(previous.replace(' at','').replace('EDTIP', ''));
+		var c = Date.parse(current.replace(' at','').replace('EDTIP', '').replace('ESTIP', ''));
+		var p = Date.parse(previous.replace(' at','').replace('EDTIP', '').replace('ESTIP', ''));
 		return secondsToString(c-p);
 	}else{
 		return 'not available';

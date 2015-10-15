@@ -10,7 +10,7 @@ $(document).ready(function() {
         
         event.preventDefault();
         var file = fileSelect.files[0];
-        debugger;
+  
         if (file.name == 'security.htm'){
           $('body').addClass('active');
           $('form').css("margin", "10px");
